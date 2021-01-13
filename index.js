@@ -2,7 +2,7 @@ const express = require("express");
 const fetch = require("node-fetch");
 const app = express();
 const path = require('path')
-import cors from 'cors';
+const cors = require('cors');
 app.use(express.json({ extended: false }));
 app.use(cors())
 
