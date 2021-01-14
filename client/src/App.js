@@ -6,6 +6,7 @@ function App() {
   const [song, setSong] = useState("Click below!");
   const [image, setImage] = useState('')
   const [load, setLoad] = useState('Generate')
+  const [location, setLocation] = useState('US')
   var token;
   useEffect(() => {
     const auth = async () => {
@@ -29,8 +30,6 @@ function App() {
     
     const randomCharacter = characters.charAt(Math.floor(Math.random() * characters.length));
     let randomSearch = '';
-  
-    // Places the wildcard character at the beginning, or both beginning and end, randomly.
     switch (Math.round(Math.random())) {
       case 0:
         randomSearch = randomCharacter + '%25';
@@ -48,7 +47,7 @@ function App() {
     var searchstring = randomstring();
     const result = await axios.post(
       `/generate`,
-      {string: searchstring},
+      {string: searchstring, location: location},
       {
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +55,9 @@ function App() {
         withCredentials: true,
       }
     );
-    //console.log(result)
+    console.log(result)
+    if(result.data.error)
+      window.location.reload(); 
     var rand = Math.floor(Math.random() * 50)
     var songname = result.data.tracks.items[rand].name
     var artists = result.data.tracks.items[rand].artists
@@ -73,7 +74,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p className="header">Generate Random Song</p>
-        <img src={image == '' ?logo : image} className="App-logo" alt="logo" />
+        <img src={image == '' ?logo : image} className="img" alt="logo" />
         <p>
           {song}
         </p>

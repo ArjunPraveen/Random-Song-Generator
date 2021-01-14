@@ -7,7 +7,6 @@ const exp = {};
 var auth_token ;
 exp.spotifyAuth =  async (req,res) => {
     try {
-        //console.log(process.env.AUTHTOKEN)
         const result = await fetch(
             'https://accounts.spotify.com/api/token',
              {
@@ -32,9 +31,10 @@ exp.spotifyAuth =  async (req,res) => {
 exp.generate =  async (req,res) => {
     try {
         const searchstring = req.body.string;
+        const location = req.body.location
         //console.log(auth_token)
         const result = await fetch(
-            `https://api.spotify.com/v1/search?type=track&market=US&limit=50&offset=1000&q=${searchstring}` ,
+            `https://api.spotify.com/v1/search?type=track&market=${location}&limit=50&offset=1000&q=${searchstring}` ,
             {
                 method: 'GET',
                 headers: {

@@ -2,9 +2,17 @@
   text-align: center;
 }
 
-.App-logo {
+.img {
   height: 40vmin;
   pointer-events: none;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  border-radius: 5px;
+  /* border-radius: 5px;   neomorphims??
+  box-shadow:
+    #262626 0px 0px 2px 2px,
+    #000000 4px 4px 8px,
+    #4d4d4d -4px -4px 8px; */
 }
 
 .header {
@@ -19,7 +27,7 @@
 }
 
 .App-header {
-  background-color: #111214;
+  background-color:#262626;;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
