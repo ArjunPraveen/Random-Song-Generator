@@ -69,6 +69,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+
         <h1>Generate Random Song</h1>
         <img src={image == '' ?logo : image} className="App-logo" alt="logo" />
         <p>
