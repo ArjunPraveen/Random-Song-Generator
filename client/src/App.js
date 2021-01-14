@@ -5,6 +5,7 @@ import axios from 'axios'
 function App() {
   const [song, setSong] = useState("Click below!");
   const [image, setImage] = useState('')
+  const [load, setLoad] = useState('Generate')
   var token;
   useEffect(() => {
     const auth = async () => {
@@ -43,6 +44,7 @@ function App() {
   }
   const handleClick = async(e) => {
     e.preventDefault()
+    setLoad('Loading...')
     var searchstring = randomstring();
     const result = await axios.post(
       `/generate`,
@@ -55,7 +57,7 @@ function App() {
       }
     );
     //console.log(result)
-    var rand = Math.floor(Math.random() * 10)
+    var rand = Math.floor(Math.random() * 50)
     var songname = result.data.tracks.items[rand].name
     var artists = result.data.tracks.items[rand].artists
     var artists_string = '';
@@ -65,12 +67,12 @@ function App() {
       }).join(' | '))
     setImage(result.data.tracks.items[rand].album.images[0].url)
     setSong(`${songname} - ${artists_string}`)
+    setLoad('Generate')
   }
   return (
     <div className="App">
       <header className="App-header">
-
-        <h1>Generate Random Song</h1>
+        <p className="header">Generate Random Song</p>
         <img src={image == '' ?logo : image} className="App-logo" alt="logo" />
         <p>
           {song}
@@ -81,7 +83,7 @@ function App() {
           target="_blank"
           onClick={handleClick}
         >
-          Generate
+          {load}
         </a>
       </header>
     </div>
