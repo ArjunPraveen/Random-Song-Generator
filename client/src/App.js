@@ -17,7 +17,7 @@ function App() {
           withCredentials: true,
         }
       );
-      console.log(result)
+      //console.log(result)
       token = result.access_token
     };
     auth();
@@ -54,7 +54,7 @@ function App() {
         withCredentials: true,
       }
     );
-    console.log(result)
+    //console.log(result)
     var rand = Math.floor(Math.random() * 10)
     var songname = result.data.tracks.items[rand].name
     var artists = result.data.tracks.items[rand].artists
