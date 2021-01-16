@@ -55,7 +55,7 @@ function App() {
         withCredentials: true,
       }
     );
-    console.log(result)
+    //console.log(result)
     if(result.data.error)
       window.location.reload(); 
     var rand = Math.floor(Math.random() * 50)
