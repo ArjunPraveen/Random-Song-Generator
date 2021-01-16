@@ -23,7 +23,7 @@ function App() {
       token = result.access_token
     };
     auth();
-  });
+  }, []);
 
   const randomstring = () =>  {
     const characters = 'abcdefghijklmnopqrstuvwxyz';
