@@ -1,12 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from 'axios'
 function App() {
   const [song, setSong] = useState("Click below!");
   const [image, setImage] = useState('')
   const [load, setLoad] = useState('Generate')
   const [location, setLocation] = useState('US')
+  const [history, setHistory]=  useState([])
+  const myRef = useRef(null)
   var token;
   useEffect(() => {
     const auth = async () => {
@@ -29,6 +31,7 @@ function App() {
   const handleClick = async(e) => {
 
     e.preventDefault()
+    window.scrollTo(0, 0)
     setLoad('Loading...')
     //var searchstring = randomstring();
     const result = await axios.post(
@@ -50,13 +53,33 @@ function App() {
       var {song, artists, image} = result.data
       setImage(image)
       setSong(`${song} - ${artists}`)
-      
+      const hist = [{song: song, artists : artists, image:image}, ...history]
+      if(hist.length>7)
+        hist.pop()
+      setHistory(hist)
+      console.log(history)
     }
     //setLoad('Generate')
   }
   const loader = () => {
     setLoad('Generate')
   }
+
+  const loadPreviousSong = (i,e) => {
+    if(i==0)
+      return
+    console.log(i)
+    setSong(`${history[i]["song"]} - ${history[i]["artists"]}`)
+    setImage(history[i]["image"])
+    var hist = history
+    var cur = hist[i]
+    hist.splice(i,1)
+    hist.splice(0,0,cur)
+    setHistory(hist)
+
+  }
+
+  const executeScroll = () => myRef.current.scrollIntoView() 
   return (
     <div className="App">
       <header className="App-header">
@@ -67,13 +90,29 @@ function App() {
         </p>
         <a
           className="App-link"
-          
           target="_blank"
           onClick={handleClick}
         >
           {load}
         </a>
-      </header>
+        <br></br>
+          {(history.length == 0) ? (<></>): (<a className="App-link" onClick={executeScroll}>History</a>)}
+        
+        </header>
+      <b>
+          History
+        </b>
+        <br></br>
+        <div className="history" ref={myRef}>
+        
+        {history.map((e,i)=> {
+          return(<>
+          <li><a className="prevSongs" key={i} onClick={(e) => loadPreviousSong(i,e)}>{e.song}</a> 
+          <br></br></li>
+          </>)
+        })}
+        </div>
+       
     </div>
   );
 }

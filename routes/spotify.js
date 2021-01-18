@@ -5,7 +5,7 @@ require('dotenv').config();
 const exp = {};
 
 const randomstring = () =>  {
-    const characters = 'abcdefghijklmnopqrstuvwxyz1234567890';
+    const characters = 'abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz';
     
     const randomCharacter = characters.charAt(Math.floor(Math.random() * characters.length));
     let randomSearch = '';
