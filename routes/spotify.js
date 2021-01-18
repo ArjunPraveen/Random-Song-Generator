@@ -64,7 +64,7 @@ exp.generate =  async (req,res) => {
         ) 
         const result = await request.json()
         var rand = Math.floor(Math.random() * 50)
-        //console.log(result)
+        console.log(result)
         if(result.error)
             return res.send({status: result.error.status})
         var songname = result.tracks.items[rand].name
