@@ -4,6 +4,23 @@ require('dotenv').config();
 
 const exp = {};
 
+const randomstring = () =>  {
+    const characters = 'abcdefghijklmnopqrstuvwxyz1234567890';
+    
+    const randomCharacter = characters.charAt(Math.floor(Math.random() * characters.length));
+    let randomSearch = '';
+    switch (Math.round(Math.random())) {
+      case 0:
+        randomSearch = randomCharacter + '%25';
+        break;
+      case 1:
+        randomSearch = '%25' + randomCharacter + '%25';
+        break;
+    }
+  
+    return randomSearch;
+  }
+
 var auth_token ;
 exp.spotifyAuth =  async (req,res) => {
     try {
@@ -23,17 +40,17 @@ exp.spotifyAuth =  async (req,res) => {
         //console.log(data)
         return res.send({msg: "Successfully authorized"})
     } catch (err) {
-        wconsole.log(err)
+        console.log(err)
         res.send(err)
     }
 }
 
 exp.generate =  async (req,res) => {
     try {
-        const searchstring = req.body.string;
+        const searchstring = randomstring()
         const location = req.body.location
         //console.log(auth_token)
-        const result = await fetch(
+        const request = await fetch(
             `https://api.spotify.com/v1/search?type=track&market=${location}&limit=50&offset=1000&q=${searchstring}` ,
             {
                 method: 'GET',
@@ -45,11 +62,23 @@ exp.generate =  async (req,res) => {
                 
             }
         ) 
-        const data = await result.json()
-        return res.send(data)
+        const result = await request.json()
+        var rand = Math.floor(Math.random() * 50)
+        //console.log(result)
+        if(result.error)
+            return res.send({status: result.error.status})
+        var songname = result.tracks.items[rand].name
+        var artists = result.tracks.items[rand].artists
+        var artists_string = '';
+        var image = result.tracks.items[rand].album.images[0].url
+        artists.length == 1 ? (artists_string = artists[0].name) : (
+            artists_string = artists.map((elem)=> {
+                return elem.name
+            }).join(' | '))
+        return res.send({song: songname, artists: artists_string, image: image, status:200})
     } catch (err) {
         console.log(err)
-        res.send({msg:err})
+        res.send({error:err})
     }
 }
 
