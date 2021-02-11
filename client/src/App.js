@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect, useRef } from "react";
+import PlayVideo from './components/videoplayer'
 import axios from 'axios'
 function App() {
   const [song, setSong] = useState("Click below!");
@@ -8,6 +9,9 @@ function App() {
   const [load, setLoad] = useState('Generate')
   const [location, setLocation] = useState('US')
   const [history, setHistory]=  useState([])
+  const [play, setPlay] = useState(true)
+  const [loop, setLoop] = useState(false)
+  const [url, setURL] = useState('')
   const myRef = useRef(null)
   var token;
   useEffect(() => {
@@ -31,6 +35,7 @@ function App() {
   const handleClick = async(e) => {
 
     e.preventDefault()
+    setPlay(false)
     window.scrollTo(0, 0)
     setLoad('Loading...')
     //var searchstring = randomstring();
@@ -98,11 +103,13 @@ function App() {
         <br></br>
           {(history.length == 0) ? (<></>): (<a className="App-link" onClick={executeScroll}>History</a>)}
         
+        <PlayVideo play={play} search={song} loop={loop}></PlayVideo>
         </header>
       <b>
           History
         </b>
         <br></br>
+    
         <div className="history" ref={myRef}>
         
         {history.map((e,i)=> {
