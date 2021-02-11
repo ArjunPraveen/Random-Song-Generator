@@ -6,7 +6,12 @@ const exp = {};
 exp.link = async(req,res) => {
     const search = req.body.search
     var link = `https://www.youtube.com/results?search_query=`
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({
+        'args' : [
+          '--no-sandbox',
+          '--disable-setuid-sandbox'
+        ]
+      });
     const page = await browser.newPage()
     const terms= search.split(' ').join('+')
     await page.goto(link + terms + ' audio')
