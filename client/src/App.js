@@ -49,10 +49,11 @@ function App() {
         withCredentials: true,
       }
     );
-
+      console.log(result)
     var status = result.data.status
     if(status>=400){
-      window.location.reload();
+      console.log(status,"help")
+      //window.location.reload();
     }
     else{
       var {song, artists, image} = result.data

@@ -35,11 +35,12 @@ const PlayVideo =({ play, search, loop }) => {
           );
           //console.log(result)
           //console.log(result)
-          setState({url : result.data.link})
+          setState({url : result.data.link, playing:true})
+
 
         };
         getlink()
-      }, [search]);
+      }, [search, play]);
     const {url, pip, playing} = state
     
     return(

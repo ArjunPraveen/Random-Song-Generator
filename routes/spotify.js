@@ -49,9 +49,9 @@ exp.generate =  async (req,res) => {
     try {
         const searchstring = randomstring()
         const location = req.body.location
-        //console.log(auth_token)
+        console.log(auth_token)
         const request = await fetch(
-            `https://api.spotify.com/v1/search?type=track&market=${location}&limit=50&offset=1000&q=${searchstring}` ,
+            `https://api.spotify.com/v1/search?type=track&market=${location}&limit=50&q=${searchstring}` ,
             {
                 method: 'GET',
                 headers: {
@@ -62,9 +62,10 @@ exp.generate =  async (req,res) => {
                 
             }
         ) 
+        console.log(request)
         const result = await request.json()
         var rand = Math.floor(Math.random() * 50)
-        //console.log(result)
+        console.log(result)
         if(result.error)
             return res.send({status: result.error.status})
         var songname = result.tracks.items[rand].name
