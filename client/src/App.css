@@ -5,6 +5,7 @@ body {
 	text-align: center;
 	background-color: #262626;
 	height: 100vh;
+	overflow: hidden;
 }
 
 iframe {

@@ -52,7 +52,7 @@ function App() {
 		requestAnimationFrame(animate)
 		ctx.clearRect(0,0,canvas.width,canvas.height)
 		circles.forEach((circle, index) => {
-			if(circle.opacity < 0) {
+			if(circle.r <= 2 | circle.opacity < 0) {
 				circles.splice(index, 1)
 			}
 			circle.update()

@@ -5,8 +5,8 @@ export class Circle {
         this.y = y
         this.r = r
         this.velocity = {
-            x: (Math.random() - 0.5) * 8,
-            y: (Math.random()) * 10
+            x: (Math.random() - 0.5) * 5,
+            y: (Math.random()) * 2
         }
         this.thrust = 0.005
         this.color = this.colors[Math.floor(Math.random()*this.colors.length)]
@@ -26,10 +26,11 @@ export class Circle {
     }
     update() {
         this.draw()
-        this.thrust += 0.001
-        this.opacity -= 0.005
+        this.thrust += 0.00025
+        this.opacity -= 0.0025
         this.velocity.y += this.thrust
         this.x += this.velocity.x
         this.y -= this.velocity.y
+        this.r -= 0.25
     }
 }
