@@ -5,7 +5,7 @@ import PlayVideo from './components/videoplayer'
 import axios from 'axios'
 import {Circle} from "./Circle"
 function App() {
-	const [song, setSong] = useState("Click below!");
+	const [song, setSong] = useState("Click on Generate!");
 	const [image, setImage] = useState('')
 	const [load, setLoad] = useState('Generate')
 	const [location, setLocation] = useState('US')
@@ -122,8 +122,9 @@ function App() {
 			<header className="App-header">
 				<p className="header">Generate Random Song</p>
 			</header>
+			<a className="App-link" target="_blank" onClick={handleClick} > {load} </a><br/><br/>
+			<img src={image == '' ?logo:image} className="img" />
 			<p className="songname"> {song} </p>
-			<a className="App-link" target="_blank" onClick={handleClick} > {load} </a>
 			<br />
 			<PlayVideo play={play} search={song} loop={loop}></PlayVideo>
 			<div className="historybox">
