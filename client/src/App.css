@@ -1,14 +1,141 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+body {
+	text-align: center;
+	background-color: #262626;
+	height: 100vh;
+}
+
+iframe {
+	margin: auto;
+	height: 0px;
+}
+
+#root, .App {
+	height: 100%;
+}
+
+.prevSongs {
+	cursor: pointer;
+}
+
+div {
+	width: auto;
+	margin: auto;
+}
+
+.songname {
+	font-size: 1.5em;
+	font-family: 'Playfair Display', serif;
+	font-style: italic;
+	color: whitesmoke;
+}
+
+.videoplayer {
+	height: 0px;
+}
+
+.history {
+	color: rgb(255, 255, 255);
+	font-family: 'Share Tech Mono', monospace;
+	overflow-y: scroll;
+	max-height: 15vh;
+	margin: 5px;
+	max-width: 100%;
+	text-overflow: ellipsis;
+	height: 0px;
+	transition: all 1000ms;
+}
+
+canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -10;
+	pointer-events: none;
+}
+
+.expand {
+	height: 150px;
+}
+
+.listInd {	
+	list-style: none;
+	white-space: nowrap;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+}
+
+.history::-webkit-scrollbar {
+	width: 5px;
+}
+
+.history::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: rgb(212, 212, 212);
+}
+
+.history::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: darkgrey;
+}
+
+.historytext {
+	color: white;
+	font-size: 1.5em;
+	font-family: 'Share Tech Mono', monospace;
+	cursor: pointer;
+}
+
+.historybox {
+	width: 45%;
+	text-overflow: ellipsis;
+	background-image: url('https://www.itl.cat/pngfile/big/13-132771_rainbow-wallpaper-hd-blurry-rainbow.png');
+	background-repeat: repeat;
+	backdrop-filter: blur(10px);
+	position: absolute;
+	max-height: 20vh;
+	backdrop-filter: blur(5px);
+	border-radius: 10px 10px 0 0;
+	overflow-y: hidden;
+	bottom: 0;
+	padding-top: 10px;
+	padding-left: 0;
+	padding-right: 0;
+	left: 0;
+	right: 0;
+}
+
+.control-play-pause {
+	margin: 0 10px;
+	/* cursor: pointer; */
+	/* pointer-events: all; */
+}
+
+progress {
+	width: 90%;
+	margin: 3px 5px;
+}
+
+.audioPlayer {
+	padding: 15px;
+	width: 50%;
+	margin: 100px auto;
+	border-radius: 50px;
+	display: flex;
+	justify-content: center;
+	background: black;
+	color: white;
 }
 
 .img {
-  height: 40vmin;
-  pointer-events: none;
-  transition: .5s ease;
-  backface-visibility: hidden;
-  border-radius: 5px;
-  /* border-radius: 5px;   neomorphims??
+	height: 40vmin;
+	pointer-events: none;
+	transition: .5s ease;
+	backface-visibility: hidden;
+	border-radius: 5px;
+	/* border-radius: 5px;   neomorphims??
   box-shadow:
     #262626 0px 0px 2px 2px,
     #000000 4px 4px 8px,
@@ -16,45 +143,50 @@
 }
 
 .header {
-  background-image: url('https://www.itl.cat/pngfile/big/13-132771_rainbow-wallpaper-hd-blurry-rainbow.png');
-            background-repeat: repeat; 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent;  
-            font-size: 50px; 
-            text-align: center; 
-            font-weight: bold; 
-            text-transform: uppercase;
+	background-image: url('https://www.itl.cat/pngfile/big/13-132771_rainbow-wallpaper-hd-blurry-rainbow.png');
+	background-repeat: repeat;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-size: 50px;
+	text-align: center;
+	font-weight: bold;
+	text-transform: uppercase;
 }
 
 .App-header {
-  background-color:#262626;;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	/* background-color: #262626; */
+	min-height: 10vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
+	background: #2e2e2e;
+	font-size: 2em;
+	cursor: pointer;
+	padding: 8px 16px 13px 16px;
+	border-radius: 20px;
 }
 
-.history{
-  text-align: left;
-  margin-left: 5%;
+.history {
+	text-align: left;
+	margin-left: 5%;
 }
+
 .prevSongs {
-  text-align: left;
+	text-align: left;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
-

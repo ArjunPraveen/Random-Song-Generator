@@ -15,6 +15,7 @@ code {
 .icon-bar {
   position: fixed;
   top: 50%;
+  left: 0;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -31,9 +32,9 @@ code {
 }
 
 /* Style the social media icons with color, if you want */
-.icon-bar a:hover {
-  background-color: #000;
-}
+/* .icon-bar a:hover {
+  fil: rgba(0, 0, 0, 0.13);
+} */
 
 .facebook {
   background: #3B5998;
@@ -50,12 +51,89 @@ code {
   color: white;
 }
 
+.top {
+  border-radius: 0 15px 0 0;
+}
+
+.bottom {
+  border-radius: 0 0 15px 0;
+}
+
 .linkedin {
   background: #007bb5;
+  color: white;
+}
+
+.contributions {
+  background: #6400b5;
   color: white;
 }
 
 .youtube {
   background: #bb0000;
   color: white;
+}
+
+.contributions::before {
+  content: 'Contributor';
+  text-decoration: none;
+  font-size: 0.5em;
+  position: absolute;
+  transform: translate(-90px,10px);
+  transition: all 400ms;
+  display: block;
+}
+
+.contributions:hover::before {
+  transform: translate(-5px,10px);
+}
+
+.twitter::before {
+  content: 'Twitter';
+  text-decoration: none;
+  font-size: 0.5em;
+  position: absolute;
+  transform: translate(-90px,10px);
+  transition: all 400ms;
+  display: block;
+}
+
+.twitter:hover::before {
+  transform: translate(-5px,10px);
+}
+
+.github::before {
+  content: 'GitHub';
+  text-decoration: none;
+  font-size: 0.5em;
+  position: absolute;
+  transform: translate(-90px,10px);
+  transition: all 400ms;
+  display: block;
+}
+
+.github:hover::before {
+  transform: translate(-5px,10px);
+}
+
+.icon {
+  font-family: 'Share Tech Mono', monospace;
+  text-align: end;
+  width: 30px;
+  height: 30px;
+  display: flex;
+}
+
+.icon:hover {
+  width: 90px;
+  border-radius: 0 35px 35px 0;
+}
+
+.icon:hover i {
+  transform: translate(40px,5px);
+}
+
+.icon i {
+  transition: all 400ms;
+  transform: translate(0px,5px);
 }
